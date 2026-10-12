@@ -83,8 +83,6 @@ NEXUS includes demo tournament listings for games such as:
 
 Users can explore the tournament cards, search for games, filter by category and prize pool, and select a tournament in the registration form.
 
-**Note:** Tournament listings, prize pools, leaderboard scores, and team rankings are sample data for demonstration purposes. They do not represent verified or live tournament information.
-
 ## 📝 Registration System
 
 The registration form supports demo tournament sign-ups and validates user input. Submitted registrations are saved in the browser's local storage and displayed in the demo organizer dashboard.
