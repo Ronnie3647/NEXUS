@@ -133,7 +133,7 @@ Contributions, suggestions, and improvements are welcome.
 
 ## 📄 License
 
-No license has been specified yet. Unless a license is added, others do not automatically receive permission to reuse, distribute, or modify this project. Add a suitable open-source license if you intend to permit that.
+No license has been provided for this project. The repository is public and its source code can be viewed on GitHub, but public visibility does not automatically grant permission to reuse, modify, or redistribute the code.
 
 ---
 
