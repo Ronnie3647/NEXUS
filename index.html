@@ -1,0 +1,349 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0809">
+  <meta name="description" content="NEXUS Championship: a gaming and esports festival for competitive players.">
+  <title>NEXUS | Gaming & Esports Championship</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="page-glow" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="NEXUS home">
+      <span class="brand-mark">N</span>
+      <span>NEXUS<span class="brand-dot">.</span><small>CHAMPIONSHIP</small></span>
+    </a>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation"
+      aria-expanded="false">☰</button>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#tournaments">Tournaments</a>
+      <a href="#schedule">Schedule</a>
+      <a href="#leaderboard">Leaderboard</a>
+      <a href="#register" class="nav-cta">Register Now ↗</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-backdrop" aria-hidden="true"></div>
+      <div class="hero-content reveal">
+        <span class="eyebrow"><span class="live-dot"></span> THE NEXT LEVEL STARTS HERE</span>
+        <h1>ENTER THE<br><span>ARENA.</span></h1>
+        <p class="hero-copy">
+          One stage. Elite competition. Legendary plays.
+          Bring your squad and prove you belong at the top.
+        </p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#register">JOIN THE BATTLE <span>↗</span></a>
+          <a class="button button-ghost" href="#tournaments">EXPLORE EVENTS</a>
+        </div>
+
+        <div class="hero-stats">
+          <div><strong>04</strong><span>FEATURED GAMES</span></div>
+          <div><strong>₹2500</strong><span>DEMO PRIZE POOL</span></div>
+          <div><strong>01</strong><span>ULTIMATE CHAMPION</span></div>
+        </div>
+        <p class="micro-note">Prize figures are illustrative demo content, not a confirmed payout.</p>
+      </div>
+
+      <div class="hero-side-label">NEXUS / SEASON 01</div>
+      <div class="countdown-panel">
+        <span class="countdown-label">EVENT COUNTDOWN</span>
+        <div class="countdown" id="countdown" aria-live="polite">
+          <div><strong id="days">--</strong><span>DAYS</span></div>
+          <div><strong id="hours">--</strong><span>HOURS</span></div>
+          <div><strong id="minutes">--</strong><span>MINS</span></div>
+          <div><strong id="seconds">--</strong><span>SECS</span></div>
+        </div>
+        <span class="countdown-foot" id="eventDateLabel">Demo event date</span>
+      </div>
+    </section>
+
+    <section class="ticker" aria-label="Festival highlights">
+      <div class="ticker-track">
+        <span>COMPETE TO WIN</span><b>✦</b><span>BUILD YOUR SQUAD</span><b>✦</b>
+        <span>OWN THE ARENA</span><b>✦</b><span>COMPETE TO WIN</span><b>✦</b>
+        <span>BUILD YOUR SQUAD</span><b>✦</b><span>OWN THE ARENA</span><b>✦</b>
+      </div>
+    </section>
+
+    <section class="section section-pad" id="tournaments">
+      <div class="section-heading reveal">
+        <div>
+          <span class="eyebrow">CHOOSE YOUR BATTLE</span>
+          <h2>FEATURED <span>TOURNAMENTS</span></h2>
+          <p>Find your game, assemble your team, and get in the fight.</p>
+        </div>
+        <span class="section-index">01 / EVENTS</span>
+      </div>
+
+      <div class="filter-panel reveal">
+        <label class="search-field">
+          <span aria-hidden="true">⌕</span>
+          <input id="gameSearch" type="search" placeholder="Search games or tournaments..." autocomplete="off">
+        </label>
+
+        <label class="filter-control">
+          <span>GAME</span>
+          <select id="gameFilter">
+            <option value="all">All games</option>
+            <option value="Valorant">Valorant</option>
+            <option value="Counter-Strike 2">Counter-Strike 2</option>
+            <option value="BGMI">BGMI</option>
+            <option value="Rocket League">Rocket League</option>
+          </select>
+        </label>
+
+        <label class="filter-control">
+          <span>CATEGORY</span>
+          <select id="categoryFilter">
+            <option value="all">All categories</option>
+            <option value="FPS">FPS</option>
+            <option value="Battle Royale">Battle Royale</option>
+            <option value="Sports">Sports</option>
+          </select>
+        </label>
+
+        <label class="filter-control">
+          <span>MIN. PRIZE POOL</span>
+          <select id="prizeFilter">
+            <option value="0">Any prize pool</option>
+            <option value="2000">₹2,000 and above</option>
+            <option value="3000">₹3,000 and above</option>
+            <option value="4000">₹4,000 and above</option>
+            <option value="5000">₹5,000 only</option>
+          </select>
+
+        <button class="button button-ghost filter-reset" id="resetFilters" type="button">RESET</button>
+      </div>
+
+      <div class="results-line">
+        <span id="resultsCount" aria-live="polite">Loading tournaments...</span>
+        <span>ALL PRIZE VALUES ARE DEMONSTRATION DATA</span>
+      </div>
+
+      <div class="tournament-grid" id="tournamentGrid">
+        <p class="empty-state">Loading tournament cards...</p>
+      </div>
+      <p class="empty-state hidden" id="noResults">No tournaments match these filters. Even esports has its limits.</p>
+    </section>
+
+    <section class="section section-pad schedule-section" id="schedule">
+      <div class="section-heading reveal">
+        <div>
+          <span class="eyebrow">MARK YOUR CALENDAR</span>
+          <h2>THE <span>BATTLE PLAN</span></h2>
+          <p>A sample festival schedule. Update these times before publishing.</p>
+        </div>
+        <span class="section-index">02 / SCHEDULE</span>
+      </div>
+
+      <div class="schedule-layout">
+        <div class="schedule-date reveal">
+          <span class="date-kicker">NEXUS / DAY ONE</span>
+          <strong>01</strong>
+          <span>FESTIVAL DAY</span>
+          <div class="date-rule"></div>
+          <p>Check-in early. Play hard. Be decent to your teammates. Three easy steps.</p>
+        </div>
+
+        <div class="timeline reveal">
+          <article class="timeline-item">
+            <time>09:00 AM</time>
+            <span class="timeline-dot"></span>
+            <div><h3>PLAYER CHECK-IN</h3><p>Verify registrations and confirm team rosters.</p></div>
+            <span class="timeline-tag">OPENING</span>
+          </article>
+          <article class="timeline-item">
+            <time>10:00 AM</time>
+            <span class="timeline-dot"></span>
+            <div><h3>OPENING CEREMONY</h3><p>Festival briefing, rules and match announcements.</p></div>
+            <span class="timeline-tag">STAGE</span>
+          </article>
+          <article class="timeline-item">
+            <time>11:00 AM</time>
+            <span class="timeline-dot"></span>
+            <div><h3>QUALIFIERS BEGIN</h3><p>Group-stage matches across the featured games.</p></div>
+            <span class="timeline-tag">MATCHES</span>
+          </article>
+          <article class="timeline-item">
+            <time>03:00 PM</time>
+            <span class="timeline-dot"></span>
+            <div><h3>SEMIFINALS</h3><p>The remaining teams fight for a place in the final.</p></div>
+            <span class="timeline-tag">ELIMINATION</span>
+          </article>
+          <article class="timeline-item">
+            <time>06:00 PM</time>
+            <span class="timeline-dot"></span>
+            <div><h3>FINALS & AWARDS</h3><p>Final matches and awards, subject to the official schedule.</p></div>
+            <span class="timeline-tag">FINALS</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-pad leaderboard-section" id="leaderboard">
+      <div class="section-heading reveal">
+        <div>
+          <span class="eyebrow">THE CURRENT STANDINGS</span>
+          <h2>HALL OF <span>CHAMPIONS</span></h2>
+          <p>Illustrative leaderboard scores for website testing only.</p>
+        </div>
+        <span class="section-index">03 / RANKINGS</span>
+      </div>
+
+      <div class="demo-banner"><span class="demo-badge">SAMPLE DATA</span>
+        These are fictional example scores, not live tournament results.
+      </div>
+
+      <div class="leaderboard-wrap reveal">
+        <table class="leaderboard-table">
+          <thead><tr><th>RANK</th><th>PLAYER / TEAM</th><th>GAME</th><th>WINS</th><th>SAMPLE POINTS</th></tr></thead>
+          <tbody id="leaderboardBody">
+            <tr><td colspan="5">Loading sample leaderboard...</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="micro-note">Leaderboard data is hard-coded in script.js. No match results are being collected or verified.</p>
+    </section>
+
+    <section class="section section-pad register-section" id="register">
+      <div class="section-heading reveal">
+        <div>
+          <span class="eyebrow">YOUR RUN STARTS NOW</span>
+          <h2>CLAIM YOUR <span>SPOT</span></h2>
+          <p>Enter demo details to test the registration flow.</p>
+        </div>
+        <span class="section-index">04 / REGISTRATION</span>
+      </div>
+
+      <div class="registration-layout">
+        <div class="registration-info reveal">
+          <span class="info-symbol">N.</span>
+          <h3>YOUR SQUAD.<br>YOUR MOMENT.</h3>
+          <p>Register as a solo player or submit a team roster. For this demo, records remain in this browser only.</p>
+          <ul class="check-list">
+            <li>✓ Select a featured tournament</li>
+            <li>✓ Add team and captain details</li>
+            <li>✓ Review demo registrations in the dashboard</li>
+          </ul>
+          <div class="info-warning">DEMO ONLY: do not enter passwords, payment details, or sensitive personal information.</div>
+        </div>
+
+        <form id="registrationForm" class="registration-form reveal">
+          <div class="form-title"><h3>PLAYER REGISTRATION</h3><span>* REQUIRED</span></div>
+
+          <div class="form-grid">
+            <label class="form-field">Registration type *
+              <select id="registrationType" name="registrationType" required>
+                <option value="Team">Team registration</option>
+                <option value="Solo">Solo registration</option>
+              </select>
+            </label>
+
+            <label class="form-field">Tournament *
+              <select id="tournamentSelect" name="tournament" required>
+                <option value="">Choose a game</option>
+              </select>
+            </label>
+
+            <label class="form-field">Player / Captain name *
+              <input name="playerName" required maxlength="60" autocomplete="name" placeholder="Your display name">
+            </label>
+
+            <label class="form-field">Email *
+              <input name="email" type="email" required maxlength="120" autocomplete="email" placeholder="you@example.com">
+            </label>
+
+            <label class="form-field team-field">Team name *
+              <input name="teamName" id="teamName" maxlength="60" placeholder="e.g. Crimson Wolves">
+            </label>
+
+            <label class="form-field team-field">Number of players *
+              <select name="teamSize" id="teamSize">
+                <option value="2">2 players</option>
+                <option value="3">3 players</option>
+                <option value="4">4 players</option>
+                <option value="5" selected>5 players</option>
+              </select>
+            </label>
+
+            <label class="form-field team-field full-field">Teammate display names
+              <textarea name="teammates" rows="3" maxlength="400" placeholder="Enter teammate names, one per line"></textarea>
+              <small>Demo field. Names are not verified against any gaming platform.</small>
+            </label>
+
+            <label class="form-field full-field">Player notes (optional)
+              <textarea name="notes" rows="2" maxlength="300" placeholder="Any non-sensitive notes for this demo"></textarea>
+            </label>
+          </div>
+
+          <label class="consent-line">
+            <input type="checkbox" name="demoConsent" required>
+            <span>I understand this is a browser-only demo and my entry is not sent to an event organizer.</span>
+          </label>
+
+          <button class="button button-primary submit-button" type="submit">SAVE DEMO REGISTRATION ↗</button>
+          <p class="form-message" id="formMessage" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+    <section class="section section-pad dashboard-section" id="dashboard">
+      <div class="section-heading reveal">
+        <div>
+          <span class="eyebrow">LOCAL TESTING AREA</span>
+          <h2>ORGANIZER <span>DASHBOARD</span></h2>
+          <p>Entries stored in this browser's localStorage. Not a secure admin system.</p>
+        </div>
+        <span class="section-index">05 / ADMIN DEMO</span>
+      </div>
+
+      <div class="dashboard-toolbar">
+        <div><strong id="registrationCount">0</strong><span>LOCAL DEMO ENTRIES</span></div>
+        <div class="toolbar-actions">
+          <button class="button button-ghost" id="exportCsv" type="button">EXPORT CSV ↓</button>
+          <button class="button button-danger-outline" id="clearRegistrations" type="button">CLEAR LOCAL ENTRIES</button>
+        </div>
+      </div>
+
+      <div class="demo-banner"><span class="demo-badge">LOCAL ONLY</span>
+        Anyone using this browser profile can inspect or change local demo records. Do not use for real registrations.
+      </div>
+
+      <div class="dashboard-table-wrap">
+        <table class="dashboard-table">
+          <thead><tr><th>TYPE</th><th>PLAYER / CAPTAIN</th><th>TEAM</th><th>GAME</th><th>EMAIL</th><th>DATE SAVED</th></tr></thead>
+          <tbody id="registrationTableBody">
+            <tr><td colspan="6">No local demo registrations yet.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="micro-note">Export creates a CSV file from this browser's current local demo records.</p>
+    </section>
+
+    <section class="final-cta">
+      <div><span class="eyebrow">THE ARENA IS WAITING</span><h2>PLAY WITHOUT <span>LIMITS.</span></h2></div>
+      <a class="button button-primary" href="#register">REGISTER FOR NEXUS ↗</a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="brand" href="#home"><span class="brand-mark">N</span><span>NEXUS<span class="brand-dot">.</span><small>CHAMPIONSHIP</small></span></a>
+    <p>Independent student demo project. Not affiliated with the games or their publishers.</p>
+    <a href="#home">BACK TO TOP ↑</a>
+  </footer>
+</body>
+</html>
